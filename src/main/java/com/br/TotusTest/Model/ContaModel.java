@@ -47,23 +47,6 @@ public class ContaModel {
     @JoinColumn(name = "fornecedor_id")
     private FornecedorModel fornecedor;
     
-    public void setSituacao(SituacaoConta novaSituacao) {
-
-        if (novaSituacao == null) {
-            throw new IllegalArgumentException("Situação é obrigatória.");
-        }
-
-        if (this.situacao == SituacaoConta.PAGO
-                && novaSituacao == SituacaoConta.PENDENTE) {
-
-            throw new IllegalStateException(
-                    "Uma conta paga não pode voltar para pendente."
-            );
-        }
-
-        this.situacao = novaSituacao;
-    }
-    
     public void setValor(double valor) {
 
         if (valor < 0) {

@@ -59,7 +59,7 @@ public class FornecedorController {
         @ApiResponse(responseCode = "201", description = "Fornecedor criado com sucesso"),
         @ApiResponse(responseCode = "400", description = "Dados inválidos")
     })
-    @PostMapping("/Save/{id}")
+    @PostMapping("/Save")
     public ResponseEntity<FornecedorDTO> salvar(@Valid @RequestBody FornecedorDTO fornecedorDTO) {
         FornecedorDTO fornecedorDTOSalvo = fornecedorService.salvar(fornecedorDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(fornecedorDTOSalvo);

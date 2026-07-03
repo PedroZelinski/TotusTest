@@ -24,7 +24,7 @@ public record ContaDTO(
         double valor,
         String descricao,
         
-        @NotBlank(message = "Situação é obrigatória")
+        @NotNull(message = "Situação é obrigatória")
         SituacaoConta situacao,
         
         @NotNull(message = "Fornecedor é obrigatório")

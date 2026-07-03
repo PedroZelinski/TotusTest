@@ -64,7 +64,7 @@ public class ContaController {
         @ApiResponse(responseCode = "201", description = "Conta criada com sucesso"),
         @ApiResponse(responseCode = "400", description = "Dados inválidos")
     })
-    @PostMapping("/Save/{id}")
+    @PostMapping("/Save")
     public ResponseEntity<ContaDTO> salvar(@Valid @RequestBody ContaDTO contaDTO) {
         ContaDTO contaDTOSalvo = contaService.salvar(contaDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(contaDTOSalvo);

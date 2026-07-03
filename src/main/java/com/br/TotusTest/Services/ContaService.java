@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.br.TotusTest.DTOs.ContaDTO;
 import com.br.TotusTest.DTOs.ContaFiltroDTO;
+import com.br.TotusTest.DTOs.Util.SituacaoConta;
 import com.br.TotusTest.Exceptions.RecursoNaoEncontradoException;
 import com.br.TotusTest.Mappers.ContaMapper;
 import com.br.TotusTest.Model.ContaModel;
@@ -75,23 +76,28 @@ public class ContaService {
 
     @Transactional
     public ContaDTO atualizar(Long id, ContaDTO dto) {
-        log.info("Atualizando conta. Id: {}", id);
 
-        FornecedorModel fornecedorModel = fornecedorService.buscaEntidadePorId(dto.fornecedorId());
+        ContaModel conta = contaRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Conta", id));
 
-        contaRepository.findById(id)
-                .orElseThrow(() -> {
-                    log.warn("Conta não encontrada para atualização. Id: {}", id);
-                    return new RecursoNaoEncontradoException("Conta", id);
-                });
+        log.info("Verificando status da conta. Id: {}", id);
+        if (conta.getSituacao() == SituacaoConta.PAGO
+                && dto.situacao() == SituacaoConta.PENDENTE) {
 
-        ContaModel model = ContaMapper.toEntity(dto, fornecedorModel);
-        model.setId(id);
+            throw new IllegalArgumentException(
+                    "Não é permitido alterar uma conta paga para pendente.");
+        }
+        log.info("Validação ocorre no setSituacao");
 
-        ContaModel updated = contaRepository.save(model);
+        FornecedorModel fornecedor =
+                fornecedorService.buscaEntidadePorId(dto.fornecedorId());
 
-        log.info("Conta atualizada com sucesso. Id: {}", id);
-
+        ContaModel model = ContaMapper.toEntity(dto, fornecedor); 
+        model.setId(id); 
+        
+        ContaModel updated = contaRepository.save(model); 
+        log.info("Conta atualizada com sucesso. Id: {}", id); 
+        
         return ContaMapper.toDTO(updated);
     }
 
