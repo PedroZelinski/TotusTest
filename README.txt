@@ -20,3 +20,5 @@ Para subir toda a aplicação (incluindo dependências como banco de dados e Rab
 docker-compose up --build
 
 O comando irá construir as imagens necessárias e iniciar os containers configurados no ambiente.
+
+Na raiz do projeto existe uma collection com o endpoint de importação de arquivo csv para teste.
