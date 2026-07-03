@@ -1,0 +1,350 @@
+{
+  "info": {
+    "_postman_id": "0aa791d6-a9dc-4d2c-bf4c-fc54aed17a4b",
+    "name": "TOTUS Test",
+    "description": "Coleção para testes da API de Contas",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "12507633"
+  },
+  "item": [
+    {
+      "name": "Upload CSV",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "value": null
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/importacao/csv",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "importacao",
+            "csv"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Excluir Fornecedor",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/fornecedor/Delete/{{id}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "fornecedor",
+            "Delete",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar Fornecedor",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"id\": {{id}},\n    \"nome\": \"Fornecedor Atualizado\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/fornecedor/Update/{{id}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "fornecedor",
+            "Update",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Todos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/fornecedor/FindAll",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "fornecedor",
+            "FindAll"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar por Id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/fornecedor/find/{{id}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "fornecedor",
+            "find",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Fornecedor",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"nome\": \"Fornecedor Teste\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/fornecedor/Save/{{id}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "fornecedor",
+            "Save",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Conta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Conta de Energia\",\n  \"dataVencimento\": \"2026-08-10T00:00:00.000+00:00\",\n  \"dataPagamento\": null,\n  \"valor\": 350.75,\n  \"descricao\": \"Conta de energia elétrica\",\n  \"situacao\": \"PENDENTE\",\n  \"fornecedorId\": {{fornecedorId}}\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Conta/Save",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Conta",
+            "Save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar Conta por Id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/Conta/find/{{id}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Conta",
+            "find",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Contas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/Conta/FindAll",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Conta",
+            "FindAll"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar Conta",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": {{id}},\n  \"nome\": \"Conta de Energia Atualizada\",\n  \"dataVencimento\": \"2026-08-10T00:00:00.000+00:00\",\n  \"dataPagamento\": \"2026-08-08T00:00:00.000+00:00\",\n  \"valor\": 350.75,\n  \"descricao\": \"Conta paga antecipadamente\",\n  \"situacao\": \"PAGO\",\n  \"fornecedorId\": {{fornecedorId}}\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Conta/Update/{{id}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Conta",
+            "Update",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Excluir Conta",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/Conta/Delete/{{id}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Conta",
+            "Delete",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Pesquisar Contas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/Conta/search?dataVencimentoInicio=2026-01-01&dataVencimentoFim=2026-12-31&descricao=energia&page=0&size=10&sort=id,asc",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Conta",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "dataVencimentoInicio",
+              "value": "2026-01-01"
+            },
+            {
+              "key": "dataVencimentoFim",
+              "value": "2026-12-31"
+            },
+            {
+              "key": "descricao",
+              "value": "energia"
+            },
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "10"
+            },
+            {
+              "key": "sort",
+              "value": "id,asc"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Somatório das Contas por Período",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/Conta/ContasPorPeriodo?inicio=2026-01-01&fim=2026-12-31",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Conta",
+            "ContasPorPeriodo"
+          ],
+          "query": [
+            {
+              "key": "inicio",
+              "value": "2026-01-01"
+            },
+            {
+              "key": "fim",
+              "value": "2026-12-31"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "id",
+      "value": "1"
+    },
+    {
+      "key": "fornecedorId",
+      "value": "1"
+    }
+  ]
+}

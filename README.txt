@@ -21,4 +21,5 @@ docker-compose up --build
 
 O comando irá construir as imagens necessárias e iniciar os containers configurados no ambiente.
 
-Na raiz do projeto existe uma collection com o endpoint de importação com um arquivo csv para teste.
+Na raiz do projeto existe uma collection com os endpoints dos CRUDs e o endpoint de importação com um arquivo csv para teste.
+TOTUS Test.postman_collection
